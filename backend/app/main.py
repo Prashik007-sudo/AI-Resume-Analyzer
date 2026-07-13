@@ -1,15 +1,16 @@
 from fastapi import FastAPI
+from app.routers import resume
 
 app = FastAPI(
     title="AI Resume Analyzer API",
-    description="Backend API for the AI Resume Analyzer project",
     version="1.0.0"
 )
+
+app.include_router(resume.router)
 
 
 @app.get("/")
 def home():
     return {
-        "message": "Welcome to AI Resume Analyzer API",
-        "status": "Running"
+        "message": "Welcome to AI Resume Analyzer API"
     }
