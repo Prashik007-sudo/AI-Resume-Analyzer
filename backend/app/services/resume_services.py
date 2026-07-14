@@ -1,4 +1,5 @@
 import os
+import fitz
 import shutil
 from fastapi import UploadFile, HTTPException
 
@@ -10,7 +11,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 class ResumeService:
 
     @staticmethod
-    async def save_resume(file: UploadFile):
+    def save_resume(file: UploadFile):
 
         if not file.filename.endswith(".pdf"):
             raise HTTPException(
@@ -34,3 +35,37 @@ class ResumeService:
             "path": file_path,
             "message": "Resume uploaded successfully."
         }
+    
+    @staticmethod
+    def extract_text(file_path: str):
+        document = fitz.open(file_path)
+
+        text = ""
+
+        for page in document:
+           text += page.get_text()
+
+        document.close()
+
+        return text
+    
+    @staticmethod
+    def extract_resume(filename: str):
+
+        file_path = os.path.join(
+         UPLOAD_FOLDER,
+         filename
+        )
+
+        if not os.path.exists(file_path):
+          raise HTTPException(
+            status_code=404,
+            detail="Resume not found."
+        )
+
+        text = ResumeService.extract_text(file_path)
+
+        return {
+        "filename": filename,
+        "text": text
+       }
