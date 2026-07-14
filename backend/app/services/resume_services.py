@@ -2,6 +2,7 @@ import os
 import fitz
 import shutil
 from fastapi import UploadFile, HTTPException
+from app.utils.text_cleaner import TextCleaner
 
 UPLOAD_FOLDER = "uploads"
 
@@ -47,7 +48,9 @@ class ResumeService:
 
         document.close()
 
-        return text
+        cleaned_text = TextCleaner.clean_text(text)
+
+        return cleaned_text
     
     @staticmethod
     def extract_resume(filename: str):
