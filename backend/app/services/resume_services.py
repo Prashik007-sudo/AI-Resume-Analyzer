@@ -2,7 +2,9 @@ import os
 import fitz
 import shutil
 from fastapi import UploadFile, HTTPException
+
 from app.utils.text_cleaner import TextCleaner
+from app.services.resume_parser import ResumeParser
 
 UPLOAD_FOLDER = "uploads"
 
@@ -68,7 +70,11 @@ class ResumeService:
 
         text = ResumeService.extract_text(file_path)
 
+        email = ResumeParser.extract_email(text)
+
+
         return {
         "filename": filename,
+        "email": email,
         "text": text
        }
