@@ -72,9 +72,12 @@ class ResumeService:
 
         email = ResumeParser.extract_email(text)
 
+        phone = ResumeParser.extract_phone(text)
+
 
         return {
         "filename": filename,
         "email": email,
+        "phone": phone,
         "text": text
        }
