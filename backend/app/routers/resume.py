@@ -2,7 +2,10 @@ from fastapi import APIRouter, UploadFile, File
 
 from app.services.resume_services import ResumeService
 
-from app.schemas.resume_schema import ExtractResumeRequest
+from app.schemas.resume_schema import (
+    ExtractResumeRequest,
+    ResumeResponse,
+)
 
 router = APIRouter(
     prefix="/resume",
@@ -14,9 +17,12 @@ router = APIRouter(
 def upload_resume(file: UploadFile = File(...)):
     return  ResumeService.save_resume(file)
 
-@router.post("/extract")
+@router.post(
+    "/extract",
+    response_model=ResumeResponse
+)
 def extract_resume(request: ExtractResumeRequest):
-
+    
     return ResumeService.extract_resume(
         request.filename
     )

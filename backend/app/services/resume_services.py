@@ -6,6 +6,7 @@ from fastapi import UploadFile, HTTPException
 from app.utils.text_cleaner import TextCleaner
 from app.services.resume_parser import ResumeParser
 from app.ai.gemini_service import GeminiService
+from app.schemas.resume_schema import ResumeResponse
 
 UPLOAD_FOLDER = "uploads"
 
@@ -77,10 +78,11 @@ class ResumeService:
 
         ai_data = GeminiService.extract_resume_information(text)
 
+        resume = ResumeResponse(
+           filename=filename,
+           email=email,
+           phone=phone,
+           **ai_data
+        )
 
-        return {
-        "filename": filename,
-        "email": email,
-        "phone": phone,
-        **ai_data
-       }
+        return resume.model_dump()
