@@ -33,7 +33,10 @@ class ResumeResponse(BaseModel):
     filename: str
 
     email: str | None = None
-    phone: str | None = None
+    phone: str | None = None  
+    linkedin: str | None = None
+    github: str | None = None
+    portfolio: str | None = None
     name: str | None = None
 
     skills: List[str] = Field(default_factory=list)

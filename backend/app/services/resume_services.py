@@ -76,12 +76,19 @@ class ResumeService:
 
         phone = ResumeParser.extract_phone(text)
 
+        linkedin = ResumeParser.extract_linkedin(text)
+        github = ResumeParser.extract_github(text)
+        portfolio = ResumeParser.extract_portfolio(text)
+
         ai_data = GeminiService.extract_resume_information(text)
 
         resume = ResumeResponse(
            filename=filename,
            email=email,
            phone=phone,
+           linkedin=linkedin,
+           github=github,
+           portfolio=portfolio,
            **ai_data
         )
 
