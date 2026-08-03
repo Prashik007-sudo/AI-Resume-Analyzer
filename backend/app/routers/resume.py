@@ -7,6 +7,9 @@ from app.schemas.resume_schema import (
     ResumeResponse,
 )
 
+from app.schemas.ats_schema import ATSScoreResponse
+from app.services.ats_score_service import ATSScoreService
+
 router = APIRouter(
     prefix="/resume",
     tags=["Resume"]
@@ -25,4 +28,17 @@ def extract_resume(request: ExtractResumeRequest):
     
     return ResumeService.extract_resume(
         request.filename
+    )
+
+
+@router.post(
+    "/score",
+    response_model=ATSScoreResponse
+)
+def score_resume(
+    resume: ResumeResponse
+):
+
+    return ATSScoreService.calculate_score(
+        resume
     )
