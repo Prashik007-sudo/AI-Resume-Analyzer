@@ -4,6 +4,7 @@ from app.schemas.ats_schema import (
     ScoreBreakdown,
     SectionScore,
 )
+from app.utils.skill_normalizer import SkillNormalizer
 
 from app.config.ats_config import (
     CONTACT_POINTS,
@@ -66,7 +67,7 @@ class ATSScoreService:
         suggestions = []
     
         resume_skills = {
-            skill.lower().strip()
+            SkillNormalizer.normalize(skill)
             for skill in resume.skills
         }
     

@@ -12,46 +12,131 @@ PROGRAMMING_LANGUAGES = {
     "ruby",
     "swift",
     "kotlin",
-    "r"
+    "r",
+    "scala",
+    "perl",
+    "matlab",
+    "dart",
+    "objective-c",
+    "bash",
+    "powershell",
+    "shell scripting",
+    "groovy",
+    "sql",
+    "pl/sql",
+    "vba",
+    "fortran",
+    "cobol",
+    "assembly"
 }
 
-FRAMEWORKS = {
+FRONTEND = {
+    "html",
+    "html5",
+    "css",
+    "css3",
+    "bootstrap",
+    "tailwind css",
+    "javascript",
+    "typescript",
+    "react",
+    "react.js",
+    "next.js",
+    "vue",
+    "vue.js",
+    "angular",
+    "angularjs",
+    "redux",
+    "vite",
+    "jquery",
+    "material ui",
+    "chakra ui",
+    "sass",
+    "webpack"
+}
+
+BACKEND = {
     "fastapi",
     "django",
     "flask",
-    "react",
-    "angular",
-    "vue",
-    "node.js",
     "express",
+    "express.js",
+    "node.js",
+    "nestjs",
     "spring",
     "spring boot",
-    "next.js"
+    "laravel",
+    "asp.net",
+    ".net",
+    "hibernate",
+    "graphql",
+    "rest api",
+    "restful api",
+    "backend",
+    "backend development",
+    "api development",
+    "microservices"
 }
 
 DATABASES = {
     "mysql",
     "postgresql",
+    "postgres",
     "mongodb",
     "sqlite",
     "oracle",
+    "oracle db",
     "sql server",
+    "microsoft sql server",
     "redis",
-    "firebase"
+    "firebase",
+    "mariadb",
+    "cassandra",
+    "dynamodb",
+    "neo4j",
+    "couchdb",
+    "elasticsearch",
+    "supabase",
+    "snowflake",
+    "dbms",
+    "database",
+    "database management system"
 }
 
-DEVOPS_CLOUD = {
+DEVOPS = {
     "docker",
     "kubernetes",
     "jenkins",
-    "git",
-    "github",
-    "gitlab",
-    "aws",
-    "azure",
-    "gcp",
     "terraform",
-    "ansible"
+    "ansible",
+    "github actions",
+    "gitlab ci",
+    "circleci",
+    "travis ci",
+    "helm",
+    "nginx",
+    "apache",
+    "prometheus",
+    "grafana",
+    "argo cd",
+    "ci/cd",
+    "linux",
+    "containerization"
+}
+
+CLOUD = {
+    "aws",
+    "amazon web services",
+    "azure",
+    "microsoft azure",
+    "gcp",
+    "google cloud",
+    "firebase",
+    "cloudflare",
+    "digitalocean",
+    "heroku",
+    "vercel",
+    "netlify"
 }
 
 AI_ML = {
@@ -60,24 +145,229 @@ AI_ML = {
     "keras",
     "opencv",
     "scikit-learn",
+    "sklearn",
+    "hugging face",
+    "huggingface",
+    "transformers",
+    "langchain",
+    "llamaindex",
+    "crewai",
+    "autogen",
+    "ollama",
+    "gemini",
+    "openai",
+    "claude",
+    "anthropic",
+    "mistral",
+    "stable diffusion",
+    "xgboost",
+    "lightgbm",
+    "catboost",
+    "onnx",
+    "mlflow",
+    "faiss",
+    "chromadb",
+    "pinecone",
+    "weaviate",
+    "qdrant",
+    "rag",
+    "vector database",
+    "prompt engineering",
+    "fine tuning",
+    "lora",
+    "ml",
+    "dl",
+    "llm",
+    "generative ai",
+    "genai",
+    "ai"
+}
+
+DATA_SCIENCE = {
     "numpy",
     "pandas",
     "matplotlib",
     "seaborn",
-    "huggingface",
-    "langchain",
-    "llamaindex"
+    "plotly",
+    "scipy",
+    "statsmodels",
+    "jupyter",
+    "google colab",
+    "feature engineering",
+    "data preprocessing",
+    "data cleaning",
+    "exploratory data analysis",
+    "eda",
+    "model evaluation",
+    "cross validation",
+    "hyperparameter tuning",
+    "dsa",
+    "data structures",
+    "algorithms"
+}
+
+DATA_ANALYTICS = {
+    "excel",
+    "power bi",
+    "tableau",
+    "looker",
+    "looker studio",
+    "sql",
+    "business intelligence",
+    "dashboard",
+    "data visualization",
+    "pivot table",
+    "statistics",
+    "reporting",
+    "kpi",
+    "etl",
+    "business analytics",
+    "analytics"
+}
+
+BIG_DATA = {
+    "hadoop",
+    "spark",
+    "pyspark",
+    "hive",
+    "hdfs",
+    "kafka",
+    "airflow",
+    "databricks",
+    "flink"
 }
 
 TESTING = {
+    # Manual Testing
+    "manual testing",
+    "functional testing",
+    "non functional testing",
+    "regression testing",
+    "integration testing",
+    "system testing",
+    "unit testing",
+    "acceptance testing",
+    "uat",
+    "smoke testing",
+    "sanity testing",
+    "performance testing",
+    "load testing",
+    "stress testing",
+    "security testing",
+    "compatibility testing",
+    "usability testing",
+    "api testing",
+    "mobile testing",
+
+    # QA Concepts
+    "stlc",
+    "sdlc",
+    "test case",
+    "test cases",
+    "test scenario",
+    "test scenarios",
+    "test plan",
+    "bug reporting",
+    "bug tracking",
+    "defect lifecycle",
+    "defect management",
+    "requirement traceability matrix",
+    "rtm",
+
+    # Automation
     "selenium",
+    "selenium webdriver",
+    "playwright",
+    "cypress",
+    "pytest",
     "testng",
     "junit",
     "pytest",
     "postman",
+    "rest assured",
     "jmeter",
-    "cypress",
-    "playwright"
+    "soapui",
+    "appium",
+    "robot framework",
+
+    # QA Tools
+    "alm",
+    "quality center",
+    "jira",
+    "azure devops",
+    "zephyr"
+}
+
+CYBER_SECURITY = {
+    "cyber security",
+    "network security",
+    "application security",
+    "web security",
+    "ethical hacking",
+    "penetration testing",
+    "vulnerability assessment",
+    "vulnerability management",
+    "owasp",
+    "wireshark",
+    "nmap",
+    "metasploit",
+    "burp suite",
+    "kali linux",
+    "snort",
+    "firewall",
+    "ids",
+    "ips",
+    "vpn",
+    "cryptography",
+    "rsa",
+    "aes",
+    "des",
+    "sha",
+    "md5",
+    "ssl",
+    "tls",
+    "xss",
+    "csrf",
+    "sql injection"
+}
+
+VERSION_CONTROL = {
+    "git",
+    "github",
+    "gitlab",
+    "bitbucket",
+    "svn",
+    "mercurial",
+    "github actions"
+}
+
+OPERATING_SYSTEMS = {
+    "windows",
+    "linux",
+    "ubuntu",
+    "debian",
+    "centos",
+    "red hat",
+    "macos",
+    "unix"
+}
+
+NETWORKING = {
+    "tcp/ip",
+    "http",
+    "https",
+    "ftp",
+    "ssh",
+    "dns",
+    "dhcp",
+    "smtp",
+    "pop3",
+    "imap",
+    "osi model",
+    "routing",
+    "switching",
+    "subnetting",
+    "load balancer"
 }
 
 SOFT_SKILLS = {
@@ -87,15 +377,34 @@ SOFT_SKILLS = {
     "problem solving",
     "critical thinking",
     "adaptability",
-    "time management"
+    "time management",
+    "analytical thinking",
+    "decision making",
+    "collaboration",
+    "presentation",
+    "creativity",
+    "attention to detail",
+    "interpersonal skills",
+    "negotiation",
+    "conflict resolution",
+    "mentoring"
 }
 
 SKILL_CATEGORIES = {
     "programming_languages": PROGRAMMING_LANGUAGES,
-    "frameworks": FRAMEWORKS,
+    "frontend": FRONTEND,
+    "backend": BACKEND,
     "databases": DATABASES,
-    "devops_cloud": DEVOPS_CLOUD,
+    "devops": DEVOPS,
+    "cloud": CLOUD,
     "ai_ml": AI_ML,
+    "data_science": DATA_SCIENCE,
+    "data_analytics": DATA_ANALYTICS,
+    "big_data": BIG_DATA,
     "testing": TESTING,
+    "cyber_security": CYBER_SECURITY,
+    "version_control": VERSION_CONTROL,
+    "operating_systems": OPERATING_SYSTEMS,
+    "networking": NETWORKING,
     "soft_skills": SOFT_SKILLS,
 }
