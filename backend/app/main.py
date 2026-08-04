@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.routers import resume
+from app.routers.jd import router as jd_router
 
 app = FastAPI(
     title="AI Resume Analyzer API",
@@ -7,6 +8,7 @@ app = FastAPI(
 )
 
 app.include_router(resume.router)
+app.include_router(jd_router)
 
 
 @app.get("/")
