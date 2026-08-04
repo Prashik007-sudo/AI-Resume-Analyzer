@@ -3,7 +3,9 @@ import os
 from dotenv import load_dotenv
 from google import genai
 
-from app.ai.prompts import RESUME_EXTRACTION_PROMPT
+from app.ai.prompts.resume_prompt import (
+    RESUME_EXTRACTION_PROMPT
+)
 
 load_dotenv()
 
