@@ -109,6 +109,10 @@ REQUIRED SKILLS
 
 Extract ONLY mandatory technical skills.
 
+A skill belongs in required_skills when the job description explicitly
+states or clearly implies that the candidate must have, should have,
+or is expected to have that skill.
+
 Examples:
 
 - Python
@@ -118,20 +122,34 @@ Examples:
 - Kubernetes
 - SQL
 - AWS
+- Git
 
 Rules:
 
+- Do NOT move a mandatory technical skill into keywords.
+- If a sentence lists multiple skills as required, extract ALL of them.
+- Words such as "required", "must have", "should have", "strong knowledge
+  of", "proficiency in", "experience with", and "knowledge of" generally
+  indicate required skills.
 - Return each skill only once.
 - Do not include duplicate skills.
 - Normalize common skill names.
 
-Examples:
+Example:
 
-- ReactJS → React
-- NodeJS → Node.js
-- Git Hub → GitHub
-- Amazon Web Services → AWS
-- Google Cloud Platform → GCP
+"Strong knowledge of Python, FastAPI, SQL, Docker and Git."
+
+Should produce:
+
+[
+    "Python",
+    "FastAPI",
+    "SQL",
+    "Docker",
+    "Git"
+]
+
+Do NOT place Git only in keywords in this situation.
 
 PREFERRED SKILLS
 

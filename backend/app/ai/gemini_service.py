@@ -13,6 +13,12 @@ from app.ai.prompts.jd_prompt import (
     JOB_DESCRIPTION_EXTRACTION_PROMPT
 )
 
+from app.ai.prompts.matching_prompt import (
+    AI_MATCHING_PROMPT
+)
+
+from app.schemas.ai_matching_schema import AISemanticMatch
+
 load_dotenv()
 
 logger = logging.getLogger(__name__)
@@ -96,3 +102,22 @@ class GeminiService:
         )
 
         return parsed_response
+
+    @staticmethod
+    def analyze_job_match(
+        resume: str,
+        job_description: str
+    ) -> AISemanticMatch:
+
+        prompt = AI_MATCHING_PROMPT.format(
+            resume=resume,
+            job_description=job_description
+        )
+
+        response = GeminiService._generate_response(prompt)
+
+        from app.ai.response_parser import ResponseParser
+
+        parsed_response = ResponseParser.parse(response.text)
+
+        return AISemanticMatch.model_validate(parsed_response)

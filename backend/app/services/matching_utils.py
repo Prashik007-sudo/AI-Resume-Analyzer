@@ -291,7 +291,14 @@ def build_resume_text(resume) -> str:
     parts = [
         resume.summary or "",
         *resume.skills,
+        *resume.certifications,
     ]
+
+    for education in resume.education:
+        parts.extend([
+            education.degree,
+            education.institution,
+        ])
 
     for experience in resume.experience:
         parts.extend([
@@ -317,6 +324,13 @@ def keyword_matches(
     keywords: list[str]
 ) -> dict:
 
+    keyword_aliases = {
+        "unit testing": {"pytest", "unittest", "testing"},
+        "rest api": {"rest api", "fastapi", "flask", "django"},
+        "computer science": {"computer science", "computer engineering"},
+        "sql": {"sql", "postgresql", "mysql", "sqlite", "oracle"},
+    }
+
     keyword_map = {
         normalize_text(keyword): keyword.strip()
         for keyword in keywords
@@ -337,14 +351,27 @@ def keyword_matches(
 
     for normalized, original in keyword_map.items():
 
-        pattern = rf"(?<!\w){re.escape(normalized)}(?!\w)"
+        terms = keyword_aliases.get(
+            normalized,
+            {normalized}
+        )
 
-        if re.search(pattern, resume_text):
+        found = any(
+            re.search(
+                rf"(?<!\w){re.escape(term)}(?!\w)",
+                resume_text
+            )
+            for term in terms
+        )
+
+        if found:
             matched.append(original)
         else:
             missing.append(original)
 
-    score = round(len(matched) / len(keyword_map) * 100)
+    score = round(
+        len(matched) / len(keyword_map) * 100
+    )
 
     return {
         "score": score,
