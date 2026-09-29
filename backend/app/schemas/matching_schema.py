@@ -1,5 +1,6 @@
 from typing import List
 from pydantic import BaseModel, Field
+from app.schemas.ai_matching_schema import AIGap
 
 
 class MatchResponse(BaseModel):
@@ -27,6 +28,6 @@ class MatchResponse(BaseModel):
 
     reasoning: str
     strengths: List[str] = Field(default_factory=list)
-    gaps: List[str] = Field(default_factory=list)
+    gaps: List[AIGap] = Field(default_factory=list)
 
     suggestions: List[str] = Field(default_factory=list)

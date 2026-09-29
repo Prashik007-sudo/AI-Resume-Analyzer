@@ -32,74 +32,7 @@ class JobMatchingService:
 
         return round(rule_score * 0.70 + semantic_score * 0.30)
 
-    @staticmethod
-    def generate_suggestions(
-        required: dict,
-        preferred: dict,
-        education: dict,
-        experience: dict,
-        keywords: dict,
-        ai_match
-    ) -> list[str]:
-
-        suggestions = []
-
-        for skill in required["missing"]:
-            suggestions.append(
-                f"Improve your skills in {skill} "
-                "to better match the job requirements."
-            )
-
-        for skill in required["related"]:
-            suggestions.append(
-                f"Your {skill} experience is related to "
-                f"this requirement. Consider strengthening "
-                f"your knowledge of {skill}."
-            )
-
-        for skill in preferred["missing"]:
-            suggestions.append(
-                f"Consider learning {skill} "
-                "as it is a preferred skill for this role."
-            )
-
-        if not education["match"]:
-            suggestions.append(
-                "Your education does not fully match "
-                "the education requirement for this role."
-            )
-
-        if not experience["match"]:
-            suggestions.append(
-                "Consider gaining more relevant professional "
-                "experience to meet the job requirement."
-            )
-
-        if keywords["missing"]:
-            suggestions.append(
-                "Consider adding these missing keywords "
-                "where they accurately reflect your experience: "
-                + ", ".join(keywords["missing"])
-                + "."
-            )
-
-        for gap in ai_match.gaps:
-            if not any(
-                word.lower() in gap.lower()
-                for word in ["aws", "git", "education", "experience"]
-                if word
-            ):
-                suggestions.append(gap)
-
-        unique = []
-
-        for suggestion in suggestions:
-            if suggestion not in unique:
-                unique.append(suggestion)
-
-        return unique[:6] or [
-            "Your resume is well aligned with the job description."
-        ]
+   
 
     @staticmethod
     def match(
@@ -146,14 +79,7 @@ class JobMatchingService:
             ai_match.overall_semantic_match
         )
 
-        suggestions = JobMatchingService.generate_suggestions(
-            required,
-            preferred,
-            education,
-            experience,
-            keywords,
-            ai_match
-        )
+        suggestions = ai_match.suggestions
 
         return MatchResponse(
             overall_match=overall_score,

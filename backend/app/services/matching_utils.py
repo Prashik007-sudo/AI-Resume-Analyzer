@@ -69,11 +69,7 @@ def normalize_skill(skill: str) -> str:
     return SKILL_ALIASES.get(skill, skill)
 
 
-def match_skill_list(
-    resume_skills: list[str],
-    job_skills: list[str]
-) -> dict:
-
+def match_skill_list(resume_skills: list[str], job_skills: list[str]) -> dict:
     resume = {
         normalize_skill(skill)
         for skill in resume_skills
@@ -92,10 +88,12 @@ def match_skill_list(
 
     for normalized, original in job.items():
 
+        # Exact match
         if normalized in resume:
             matched.append(original)
             continue
 
+        # Related skill match
         related_found = RELATED_SKILLS.get(normalized, set()) & resume
 
         if related_found:
@@ -103,15 +101,22 @@ def match_skill_list(
         else:
             missing.append(original)
 
-    score = 100 if not job else round(
-        len(matched) / len(job) * 100
-    )
+    # Calculate score
+    if not job:
+        score = 100
+    else:
+        exact_credit = len(matched)
+        related_credit = len(related) * 0.5
+
+        score = round(
+            (exact_credit + related_credit) / len(job) * 100
+        )
 
     return {
         "score": score,
         "matched": sorted(matched),
         "related": sorted(related),
-        "missing": sorted(missing),
+        "missing": sorted(missing)
     }
 
 
@@ -319,16 +324,50 @@ def build_resume_text(resume) -> str:
     return normalize_text(" ".join(parts))
 
 
-def keyword_matches(
-    resume,
-    keywords: list[str]
-) -> dict:
-
+def keyword_matches(resume, keywords: list[str]) -> dict:
     keyword_aliases = {
-        "unit testing": {"pytest", "unittest", "testing"},
-        "rest api": {"rest api", "fastapi", "flask", "django"},
-        "computer science": {"computer science", "computer engineering"},
-        "sql": {"sql", "postgresql", "mysql", "sqlite", "oracle"},
+        "unit testing": {
+            "unit testing",
+            "pytest",
+            "unittest",
+            "testing"
+        },
+
+        "rest api": {
+            "rest api",
+            "rest apis",
+            "fastapi",
+            "flask",
+            "django"
+        },
+
+        "computer science": {
+            "computer science",
+            "computer engineering"
+        },
+
+        "sql": {
+            "sql",
+            "postgresql",
+            "mysql",
+            "sqlite",
+            "oracle"
+        },
+
+        "backend development": {
+            "backend development",
+            "backend developer",
+            "backend application development",
+            "backend services",
+            "backend development experience"
+        },
+
+        "deployment": {
+            "deployment",
+            "deployed",
+            "deploying",
+            "application deployment"
+        }
     }
 
     keyword_map = {
@@ -341,7 +380,7 @@ def keyword_matches(
         return {
             "score": 100,
             "matched": [],
-            "missing": [],
+            "missing": []
         }
 
     resume_text = build_resume_text(resume)
@@ -376,5 +415,5 @@ def keyword_matches(
     return {
         "score": score,
         "matched": sorted(matched),
-        "missing": sorted(missing),
+        "missing": sorted(missing)
     }
