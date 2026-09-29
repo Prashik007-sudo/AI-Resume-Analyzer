@@ -11,8 +11,11 @@ A full-stack AI-powered Resume Analyzer built with:
 ## Features
 
 - Resume Upload
-- ATS Score
 - Resume Parsing
+- ATS Score
+- Job Description Extraction
+- Job Matching
+- AI Semantic Matching
 - Job Role Prediction
 - Career Guidance
 - Cover Letter Generator
